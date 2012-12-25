@@ -204,7 +204,7 @@ int wire_burnouts ( int N,const vector<int> &A,const vector<int> &B,const vector
   return i + 1;
 }
 
-#include "../util.h"
+#include "../leetcode/util.h"
 
 int main(int argc, char **argv) {
   std::cout << "------" << argv[0] << "------" << std::endl;
