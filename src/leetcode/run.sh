@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ JumpGame.cpp
+g++ JumpGame2.cpp
 
 if [ ! $? -eq 0 ]
 then
