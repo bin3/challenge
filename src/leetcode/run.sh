@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ SpiralMatrix2.cpp
+g++ JumpGame.cpp
 
 if [ ! $? -eq 0 ]
 then
