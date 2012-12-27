@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ BestTimeToBuyAndSellStock3.cpp
+g++ AddBinary.cpp
 
 if [ ! $? -eq 0 ]
 then
