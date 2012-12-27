@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ JumpGame2.cpp
+g++ BestTimeToBuyAndSellStock2.cpp
 
 if [ ! $? -eq 0 ]
 then
