@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ BestTimeToBuyAndSellStock2.cpp
+g++ BestTimeToBuyAndSellStock3.cpp
 
 if [ ! $? -eq 0 ]
 then
