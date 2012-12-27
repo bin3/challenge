@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ Anagrams.cpp
+g++ CombinationSum2.cpp
 
 if [ ! $? -eq 0 ]
 then
