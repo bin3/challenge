@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ AddTwoNumbers.cpp
+g++ Anagrams.cpp
 
 if [ ! $? -eq 0 ]
 then
