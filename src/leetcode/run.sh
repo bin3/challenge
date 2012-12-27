@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ AddBinary.cpp
+g++ AddTwoNumbers.cpp
 
 if [ ! $? -eq 0 ]
 then
