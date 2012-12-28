@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ ConvertSortedArrayToBinarySearchTree.cpp
+g++ ConvertSortedListToBinarySearchTree.cpp
 
 if [ ! $? -eq 0 ]
 then
