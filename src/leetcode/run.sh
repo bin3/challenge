@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ DistinctSubsequences.cpp
+g++ EditDistance.cpp
 
 if [ ! $? -eq 0 ]
 then
