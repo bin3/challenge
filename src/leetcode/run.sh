@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ ConvertSortedListToBinarySearchTree.cpp
+g++ DistinctSubsequences.cpp
 
 if [ ! $? -eq 0 ]
 then
