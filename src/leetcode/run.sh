@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ CombinationSum2.cpp
+g++ CountAndSay.cpp
 
 if [ ! $? -eq 0 ]
 then
