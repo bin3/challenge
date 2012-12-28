@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ CountAndSay.cpp
+g++ ConvertSortedArrayToBinarySearchTree.cpp
 
 if [ ! $? -eq 0 ]
 then
