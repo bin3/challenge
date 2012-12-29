@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ EditDistance.cpp
+g++ FlatternBinaryTreeToLinkedList.cpp
 
 if [ ! $? -eq 0 ]
 then
