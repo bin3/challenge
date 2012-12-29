@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ GenerateParentheses.cpp
+g++ GrayCode.cpp
 
 if [ ! $? -eq 0 ]
 then
