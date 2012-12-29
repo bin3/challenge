@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ FlatternBinaryTreeToLinkedList.cpp
+g++ GenerateParentheses.cpp
 
 if [ ! $? -eq 0 ]
 then
