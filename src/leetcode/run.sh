@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ GrayCode.cpp
+g++ InsertInterval.cpp
 
 if [ ! $? -eq 0 ]
 then
