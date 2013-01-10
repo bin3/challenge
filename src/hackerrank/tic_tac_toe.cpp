@@ -41,10 +41,30 @@
 #include <algorithm>
 using namespace std;
 
+#define DEBUG_MODE
+
+#ifdef DEBUG_MODE
+#define DLOG(x) std::cout << x << std::endl;
+#else
+#define DLOG(x) ;
+#endif
+
 const int N = 3;
 const char X = 'X';
 const char O = 'O';
 const char S = '_';
+
+void outputBoard(char player, const vector<string>& board, int r, int c) {
+  DLOG("---------------------------");
+  DLOG("player=" << player << ", r=" << r << ", c=" << c);
+  for (int i = 0; i < N; ++i) {
+    DLOG(board[i]);
+  }
+}
+
+char opponent(char player) {
+  return (player == X ? O : X);
+}
 
 bool canWin(char player, const vector<string>& ar, int r, int c) {
   int i = 0;
@@ -64,8 +84,8 @@ bool canWin(char player, const vector<string>& ar, int r, int c) {
     if (i == N)
       return true;
   }
-  if (r + c == N) {
-    for (i = 0; i < N && (ar[i][N - i] == player); ++i) {
+  if (r + c == N - 1) {
+    for (i = 0; i < N && (ar[i][N - 1 - i] == player); ++i) {
     }
     if (i == N)
       return true;
@@ -77,7 +97,7 @@ bool canWin(char player, const vector<string>& ar, int r, int c) {
 bool play(char player, vector<string>& ar, int r, int c) {
   if (ar[r][c] != S)
     return false;
-  char opp = (player == X ? O : X);
+  char opp = opponent(player);
   ar[r][c] = player;
   bool win = true;
   if (!canWin(player, ar, r, c)) {
@@ -93,6 +113,8 @@ bool play(char player, vector<string>& ar, int r, int c) {
       }
     }
   }
+  outputBoard(player, ar, r, c);
+  DLOG("win=" << win);
   ar[r][c] = S;
   return win;
 }
@@ -100,7 +122,7 @@ bool play(char player, vector<string>& ar, int r, int c) {
 double winRate(char player, vector<string>& ar, int r, int c) {
   if (ar[r][c] != S)
     return 0;
-  char opp = (player == X ? O : X);
+  char opp = opponent(player);
   ar[r][c] = player;
   int total = 0;
   int cnt = 0;
@@ -126,18 +148,36 @@ double winRate(char player, vector<string>& ar, int r, int c) {
 }
 
 void output(int r, int c) {
-  printf("%d %d\n", r, c);
+  std::cout << r << " " << c << std::endl;
 }
 
 /* Complete the function below to print 2 integers separated by a single space which will be your next move
  */
 void nextMove(char player, vector<string> board) {
+  outputBoard(player, board, -1, -1);
   // choose the position if it can absolutely win
   for (int r = 0; r < N; ++r) {
     for (int c = 0; c < N; ++c) {
       if (play(player, board, r, c)) {
+        DLOG("[win]"); // debug
         output(r, c);
         return;
+      }
+    }
+  }
+
+  // choose the position if the opponent can win directly
+  char opp = opponent(player);
+  for (int r = 0; r < N; ++r) {
+    for (int c = 0; c < N; ++c) {
+      if (board[r][c] == S) {
+        board[r][c] = opp;
+        if (canWin(opp, board, r, c)) {
+          DLOG("[hit opponent]"); // debug
+          output(r, c);
+          return;
+        }
+        board[r][c] = opp;
       }
     }
   }
@@ -148,14 +188,18 @@ void nextMove(char player, vector<string> board) {
   int wc = 0;
   for (int r = 0; r < N; ++r) {
     for (int c = 0; c < N; ++c) {
-      double wrate = winRate(player, board, r, c);
-      if (max_wrate < wrate) {
-        max_wrate = wrate;
-        wr = r;
-        wc = c;
+      if (board[r][c] == S) {
+        double wrate = winRate(player, board, r, c);
+        if (max_wrate < wrate) {
+          max_wrate = wrate;
+          wr = r;
+          wc = c;
+        }
+        DLOG(r << " " << c << " " << wrate);  // debug
       }
     }
   }
+  DLOG("[max_wrate] " << wr << " " << wc << " " << max_wrate);  // debug
   output(wr, wc);
 }
 
@@ -176,8 +220,9 @@ int main() {
 //  }
 
   player = 'X';
-  board.push_back("O_O");
-  board.push_back("X__");
+//  player = 'O';
+  board.push_back("XXO");
+  board.push_back("OO_");
   board.push_back("X__");
 
   nextMove(player, board);
