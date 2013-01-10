@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ InsertInterval.cpp
+g++ test.cpp
 
 if [ ! $? -eq 0 ]
 then
