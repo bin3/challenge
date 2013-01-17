@@ -38,7 +38,7 @@ public:
       vector<vector<bool> > d(n1 + 1, vector<bool>(n2 + 1, false));
       d[0][0] = true;
       for (int i = 0; i < n3; ++i) {
-          for (int j = 0; j <= i && j <= n1; ++j) {
+          for (int j = std::max(0, i - n2); j <= i && j <= n1; ++j) {
             if (d[j][i - j]) {
               if (j < n1 && s1[j] == s3[i]) {
                 d[j + 1][i - j] = true;
@@ -49,36 +49,46 @@ public:
             }
           }
       }
-      for (int j = 0; j <= n1; ++j) {
-        if (d[j][n3 - j]) return true;
-      }
-      return false;
+      return d[n1][n2];
   }
 };
 
 #include "util.h"
 
+void Solve(const std::string& s1, const std::string& s2, const std::string& s3) {
+  Solution sol;
+
+  Output("Input:");
+  Output(s1);
+  Output(s2);
+  Output(s3);
+
+  Output("Output:");
+  Output(sol.isInterleave(s1, s2, s3));
+
+}
+
 int main(int argc, char **argv) {
   std::cout << "------" << argv[0] << "------" << std::endl;
 
-  Solution sol;
 
 //  std::string s1 = "aabcc";
 //  std::string s2 = "dbbca";
 //  std::string s3 = "aadbbcbcac";
 //  std::string s3 = "aadbbbaccc";
 
-  std::string s1 = "";
-  std::string s2 = "b";
-  std::string s3 = "b";
+//  std::string s1 = "";
+//  std::string s2 = "b";
+//  std::string s3 = "b";
 
-  std::cout << "Input:\n";
-  Output(s1);
-  Output(s2);
-  Output(s3);
+  std::string s1 = "aabd";
+  std::string s2 = "abdc";
+  std::string s3 = "aabdbadc";
 
-  std::cout << "Output:\n";
-  Output(sol.isInterleave(s1, s2, s3));
+  Solve("", "", "");
+  Solve("cbcccbabbccbbcccbbbcabbbabcababbbbbbaccaccbabbaacbaabbbc",
+      "abcbbcaababccacbaaaccbabaabbaaabcbababbcccbbabbbcbbb",
+      "abcbcccbacbbbbccbcbcacacbbbbacabbbabbcacbcaabcbaaacbcbbbabbbaacacbbaaaabccbcbaabbbaaabbcccbcbabababbbcbbbcbb");
 
   return 0;
 }
