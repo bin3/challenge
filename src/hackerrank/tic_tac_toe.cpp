@@ -41,7 +41,7 @@
 #include <algorithm>
 using namespace std;
 
-#define DEBUG_MODE
+//#define DEBUG_MODE
 
 #ifdef DEBUG_MODE
 #define DLOG(x) std::cout << x << std::endl;
@@ -219,10 +219,10 @@ int main() {
 //    board.push_back(s);
 //  }
 
-  player = 'X';
-//  player = 'O';
+//  player = 'X';
+  player = 'O';
   board.push_back("XXO");
-  board.push_back("OO_");
+  board.push_back("_O_ ");
   board.push_back("X__");
 
   nextMove(player, board);

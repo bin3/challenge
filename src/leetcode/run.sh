@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ test.cpp
+g++ LongestPalindromicSubstring.cpp
 
 if [ ! $? -eq 0 ]
 then
