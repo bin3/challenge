@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ LongestPalindromicSubstring.cpp
+g++ InterleavingString.cpp
 
 if [ ! $? -eq 0 ]
 then
