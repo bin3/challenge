@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ InterleavingString.cpp
+g++ ImplementStrstr.cpp
 
 if [ ! $? -eq 0 ]
 then
