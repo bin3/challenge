@@ -29,7 +29,6 @@
 #include <algorithm>
 using namespace std;
 
-
 class Solution {
 public:
   char *strStr0(char *haystack, char *needle) {
@@ -49,29 +48,31 @@ public:
   }
   char *strStr(char *haystack, char *needle) {
     static const int NOPOS = -1;
-    int nlen = std::strlen(needle);
-    if (nlen == 0)
+    int m = std::strlen(needle);
+    if (m == 0)
       return haystack;
 
-    jump_.resize(nlen, 0);
-    for (int i = 2; i < nlen; ++i) {
-      int j = jump_[i - 1];
-      while (needle[j] != needle[i - 1] && j != 0) {
-        j = jump_[j];
+    jump_.resize(m);
+    jump_[0] = 0;
+    int k = 0;
+    for (int i = 1; i < m; ++i) {
+      while (needle[k] != needle[i] && k != 0) {
+        k = jump_[k - 1];
       }
-      if (needle[j] == needle[i - 1]) jump_[i] = j + 1;
-      else jump_[i] = 0;
+      if (needle[k] == needle[i]) ++k;
+      jump_[i] = k;
     }
-    int i = 0;
+
+    k = 0;
     for (; *haystack; ++haystack) {
-      if (i == nlen) return haystack - nlen;
-      while (needle[i] != *haystack && i != 0) {
-        i = jump_[i];
+      if (k == m) return haystack - m;
+      while (needle[k] != *haystack && k != 0) {
+        k = jump_[k - 1];
       }
-      if (!(i == 0 && needle[i] != *haystack)) ++i;
+      if (needle[k] == *haystack) ++k;
     }
-    if (i == nlen)
-      return haystack - nlen;
+    if (k == m)
+      return haystack - m;
     return NULL;
   }
 private:
@@ -88,6 +89,8 @@ int main(int argc, char **argv) {
 
   char haystack[] = "mississippi";
   char needle[] = "issip";
+//  char haystack[] = "bbaa";
+//  char needle[] = "aab";
 
   std::cout << "Input:\n";
   Output(haystack);
