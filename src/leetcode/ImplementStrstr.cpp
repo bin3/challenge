@@ -47,7 +47,6 @@ public:
     return NULL;
   }
   char *strStr(char *haystack, char *needle) {
-    static const int NOPOS = -1;
     int m = std::strlen(needle);
     if (m == 0)
       return haystack;
