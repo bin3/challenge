@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ ImplementStrstr.cpp
+g++ ValidPalindrome.cpp
 
 if [ ! $? -eq 0 ]
 then
