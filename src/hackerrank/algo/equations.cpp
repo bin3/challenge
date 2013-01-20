@@ -30,11 +30,11 @@
 
 class Solver {
 public:
-  static const int MOD = 1000007;
+  static const uint64_t MOD = 1000007;
 
-  int solve(int n) {
+  uint64_t solve(uint64_t n) {
     calcPrimes(n);
-    std::vector<int> ev;
+    std::vector<uint64_t> ev;
     calcExponents(n, ev);
     uint64_t ans = 1;
     for (std::size_t i = 0; i < ev.size(); ++i) {
@@ -43,14 +43,14 @@ public:
     return ans;
   }
 private:
-  std::vector<int> primes_;
+  std::vector<uint64_t> primes_;
 
-  void calcPrimes(int n) {
+  void calcPrimes(uint64_t n) {
     primes_.clear();
     primes_.push_back(2);
-    for (int x = 3; x <= n; ++x) {
+    for (uint64_t x = 3; x <= n; ++x) {
       bool is_prime = true;
-      int sq = std::sqrt(x) + 1;
+      uint64_t sq = std::sqrt(x) + 1;
       for (std::size_t i = 0; i < primes_.size() && primes_[i] <= sq; ++i) {
         if (x % primes_[i] == 0) {
           is_prime = false;
@@ -62,10 +62,10 @@ private:
       }
     }
   }
-  void calcExponents(int n, std::vector<int>& ev) {
+  void calcExponents(uint64_t n, std::vector<uint64_t>& ev) {
     ev.clear();
     for (std::size_t i = 0; i < primes_.size() && primes_[i] <= n; ++i) {
-      int p = primes_[i];
+      uint64_t p = primes_[i];
       int e = 0;
       while (p <= n) {
         e += n / p;
@@ -79,7 +79,7 @@ private:
 int main(int argc, char **argv) {
 	Solver sol;
 	
-	int n;
+	uint64_t n;
 	while (std::cin >> n) {
 	  std::cout << sol.solve(n) << std::endl;
 	}
