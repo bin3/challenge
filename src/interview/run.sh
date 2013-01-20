@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ ValidPalindrome.cpp
+g++ amanzon-20130120-q1.cpp
 
 if [ ! $? -eq 0 ]
 then
