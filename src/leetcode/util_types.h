@@ -49,6 +49,14 @@ struct TreeLinkNode {
   }
 };
 
+// Definition for binary tree
+struct TreeNode {
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+  TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
 std::ostream& operator<<(std::ostream& os, const Interval& interval) {
   os << "[" << interval.start << ", " << interval.end << "]";
   return os;
