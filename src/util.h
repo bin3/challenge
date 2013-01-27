@@ -17,6 +17,42 @@
 #define NVC_ NAME_VAL_COMMA
 #define NVE_(v) NV_(v) << "\n"
 
+template<typename C>
+inline void OutputContainer(const C& c, const std::string& msg = "",
+    std::ostream& os = std::cout) {
+  if (msg.size()) os << "[" << msg << "] ";
+  os << c.size() << " [";
+  typename C::const_iterator i = c.begin();
+  if (i != c.end()) {
+    os << *i;
+    ++i;
+  }
+  for (; i != c.end(); ++i) {
+    os << ", " << *i;
+  }
+  os << "]\n";
+}
+
+template<typename T1, typename T2>
+inline void OutputPair(const std::pair<T1, T2>& p, std::ostream& os = std::cout) {
+  os << p.first << ": " << p.second;
+}
+
+template<typename C>
+inline void OutputMap(const C& c, std::ostream& os = std::cout) {
+  os << c.size() << " {";
+  typename C::const_iterator i = c.begin();
+  if (i != c.end()) {
+    OutputPair(*i, os);
+    ++i;
+  }
+  for (; i != c.end(); ++i) {
+    os << ", ";
+    OutputPair(*i, os);
+  }
+  os << "}\n";
+}
+
 template<typename T>
 static void Output(const std::vector<T>& vec, std::ostream& os = std::cout) {
   os << "[";

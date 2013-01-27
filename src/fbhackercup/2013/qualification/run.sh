@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-name=balanced_smileys
+name=find_the_min
 g++ $name.cpp
 
 if [ ! $? -eq 0 ]
