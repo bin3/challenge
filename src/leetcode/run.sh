@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ ValidPalindrome.cpp
+g++ RestoreIPAddresses.cpp
 
 if [ ! $? -eq 0 ]
 then
