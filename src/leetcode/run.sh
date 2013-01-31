@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ RestoreIPAddresses.cpp
+g++ ReverseLinkedList2.cpp
 
 if [ ! $? -eq 0 ]
 then
