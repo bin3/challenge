@@ -27,7 +27,7 @@
 
 class Solution {
 public:
-    int search(int A[], int n, int target) {
+    bool search(int A[], int n, int target) {
         if (A[0] <= A[n-1]) return binary_search(A, n, target);
         int low = 0;
         int high = n;
@@ -36,12 +36,8 @@ public:
             if (A[mid] >= A[0]) low = mid + 1;
             else high = mid;
         }
-        if (target >= A[0]) return binary_search(A, low, target);
-        else {
-            int ret = binary_search(A + low, n - low, target);
-            if (ret >= 0) ret += low;
-            return ret;
-        }
+        if (target >= A[0]) return binary_search(A, low, target) != -1;
+        else return binary_search(A + low, n - low, target) != -1;
     }
     int binary_search(int A[], int n, int target) {
         int low = 0;

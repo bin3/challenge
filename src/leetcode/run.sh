@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ ReverseLinkedList2.cpp
+g++ SearchInRotatedSortedArray2.cpp
 
 if [ ! $? -eq 0 ]
 then
