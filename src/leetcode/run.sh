@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ SearchInRotatedSortedArray2.cpp
+g++ N-Queens.cpp
 
 if [ ! $? -eq 0 ]
 then
