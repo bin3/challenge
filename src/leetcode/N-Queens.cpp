@@ -34,47 +34,57 @@ class Solution {
 public:
     static const char kQ = 'Q';
     static const char kS = '.';
+    static const char kM = 'M';
 
     void init(int n) {
         n_ = n;
         string row(n, kS);
         sol_ = vector<string>(n, row);
-        sols_.clear();
         cused_ = vector<bool>(n, false);
+        dused_ = vector<vector<int> >(n, vector<int>(n, 0));
+        sols_ = 0;
     }
-    vector<vector<string> > solveNQueens(int n) {
+    int totalNQueens(int n) {
         init(n);
         dfs(0);
         return sols_;
     }
 private:
     int n_;
-    vector<vector<string> > sols_;
+    int sols_;
     vector<string> sol_;
     vector<bool> cused_;
+    vector<vector<int> > dused_;
 
-    bool valid(int x) {
-      return x >= 0 && x < n_;
+    bool valid(int r, int c) {
+      return r >= 0 && r < n_ && c >= 0 && c < n_;
     }
-    bool checkDiagonal(int r, int c) {
-      for (int i = 1; valid(r - i) && valid(c - i); ++i) {
-        if (sol_[r-i][c-i] == kQ) return false;
-      }
-      for (int i = 1; valid(r - i) && valid(c + i); ++i) {
-        if (sol_[r-i][c+i] == kQ) return false;
-      }
-      return true;
+    void markDiagonal(int r, int c, int val) {
+        static const int kN = 4;
+        static const int rex[kN] = {-1, -1, 1, 1};
+        static const int cex[kN] = {-1, 1, 1, -1};
+
+        for (int i = 0; i < kN; ++i) {
+            for (int j = 1; ; ++j) {
+                int newr = r + j * rex[i];
+                int newc = c + j * cex[i];
+                if (!valid(newr, newc)) break;
+                dused_[newr][newc] += val;
+            }
+        }
     }
     void dfs(int r) {
         if (r == n_) {
-            sols_.push_back(sol_);
+            ++sols_;
             return;
         }
         for (int c = 0; c < n_; ++c) {
-            if (!cused_[c] && checkDiagonal(r, c)) {
+            if (!cused_[c] && dused_[r][c] == 0) {
                 cused_[c] = true;
                 sol_[r][c] = kQ;
+                markDiagonal(r, c, 1);
                 dfs(r + 1);
+                markDiagonal(r, c, -1);
                 sol_[r][c] = kS;
                 cused_[c] = false;
             }
@@ -90,7 +100,7 @@ int main(int argc, char **argv) {
   Solution sol;
   for (int n = 0; n <= 4; ++n) {
     std::cout << NVE_(n);
-    Output(sol.solveNQueens(n));
+    Output(sol.totalNQueens(n));
   }
 
   return 0;

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ N-Queens.cpp
+g++ RotateImage.cpp
 
 if [ ! $? -eq 0 ]
 then
