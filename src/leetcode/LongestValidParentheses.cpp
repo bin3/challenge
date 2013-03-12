@@ -26,8 +26,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stack>
 #include <algorithm>
 using namespace std;
+
+#include "../util.h"
 
 class Solution {
 public:
@@ -60,7 +63,7 @@ public:
         }
         return maxlen;
     }
-    int longestValidParentheses(string s) {
+    int longestValidParentheses1(string s) {
         static const char kL = '(';
         static const char kR = ')';
 
@@ -92,6 +95,29 @@ public:
         }
         return maxlen * 2;
     }
+
+    int longestValidParentheses(string s) {
+        static const char kL = '(';
+
+        int maxlen = 0;
+        int len = 0;
+        int start = s.size();
+        stack<int> st;
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == kL) st.push(i);
+            else {
+                if (!st.empty()) {
+                    start = std::min(start, st.top());
+                    st.pop();
+                    if (st.empty()) len = i - start + 1;
+                    else len = i - st.top();
+                    maxlen = std::max(maxlen, len);
+                }
+                else start = s.size();
+            }
+        }
+        return maxlen;
+    }
 };
 
 #include "../util.h"
@@ -100,7 +126,7 @@ int main(int argc, char **argv) {
   std::cout << "------" << argv[0] << "------" << std::endl;
 
   Solution sol;
-  string s = "(()())";
+  string s = "(()())(()";
   Output(s);
   Output(sol.longestValidParentheses(s));
 
