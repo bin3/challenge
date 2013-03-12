@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ LongestValidParentheses.cpp
+g++ SubstringWithConcatenationOfAllWords.cpp
 
 if [ ! $? -eq 0 ]
 then
