@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ SubstringWithConcatenationOfAllWords.cpp
+g++ TwoSum.cpp
 
 if [ ! $? -eq 0 ]
 then
