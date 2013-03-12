@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-g++ RotateImage.cpp
+g++ LongestValidParentheses.cpp
 
 if [ ! $? -eq 0 ]
 then
